@@ -8,18 +8,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="umbc.veggie.Splash" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:inputType="text"
+        android:id="@+id/editText1"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-      <ImageView
+        android:layout_alignLeft="@+id/imageView1"
+      
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:text="@string/chandni" />
+
+    <EditText
+        android:inputType="text"
+        android:id="@+id/editText2"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+       
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/editText2"
+        android:ems="10"
+        android:text="@string/brislin" />
+        
+    <EditText
+        android:inputType="text"
+        android:id="@+id/editText3"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+     
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/editText2"
+        android:ems="10" 
+        android:text="@string/course_number" />
+
+    <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/lupoli" />
-    
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@null"
+        android:maxHeight="42dp"
+        android:maxWidth="42dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/veggies" />
 
 </RelativeLayout>

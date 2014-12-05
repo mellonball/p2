@@ -1,0 +1,20 @@
+1)
+
+The image used in the splash screen, located in UMBCVeggie/res/drawable-hdpi/veggies.jpg comes from Wikipedia:
+https://commons.wikimedia.org/wiki/File:GntVegCart.jpg
+
+The following is its attribution information:
+
+Gpics at en.wikipedia 
+[CC-BY-SA-3.0 (http://creativecommons.org/licenses/by-sa/3.0/), 
+GFDL (http://www.gnu.org/copyleft/fdl.html), 
+CC-BY-SA-3.0 
+(http://creativecommons.org/licenses/by-sa/3.0/) 
+or 
+CC-BY-SA-2.5-2.0-1.0 (http://creativecommons.org/licenses/by-sa/2.5-2.0-1.0)], 
+via Wikimedia Commons
+
+
+2)
+This application uses these sounds from freesound:
+Click.wav by kwahmah_02 ( https://www.freesound.org/people/kwahmah_02/ )
