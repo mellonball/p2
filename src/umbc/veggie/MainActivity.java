@@ -4,54 +4,60 @@ package umbc.veggie;
 //import com.example.lupolisplash.Splash;
 
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
-
+import android.widget.Toast;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
 
 public class MainActivity extends ActionBarActivity {
 	
+	
+	//for extended list view
 	HashMap<String, List<String>> Restaurants_category;
 	List<String> Foods_list;
 	ExpandableListView Exp_list;
 	
 	RestaurantsAdapter adapter;
 	
+	HttpExample a = new HttpExample();
 	
-	//ListView lvName;
-	/*String[] name = {"MONDO SUBS", "       Vegetable Wrap with Hummus (Vegan)", 
-			"FAMOUS FAMIGLIA", "       Pasta and Marinara Sauce and Garlic Knots (Vegan)", "       Fresca Pizza and Pizza Bianca (Vegetarian)", 
-			"OUTTAKES", "       Edamame Guacamole with Pita Triangles", "       Pita and Hummus", "       Edamame (Vegan)", 
-			"STARBUCKS COFFEE", "       Juice and Coffee without flavoring syrups (Vegan)", 
-			"SALSARITA'S FRESH CANTINA", "       Veggie Taco Salad without the Tortilla", "       Tortilla Chips", "       Guacamole and Salsa", "       Bare Burrito Bowl (Vegan)*bean seasoning contains animal-derived preservatives. Tortillas do not contain lard, but do contain casein (milk product) & animal-derived enzymes.", 
-			"MESQUITE RANCH BBQ AND GRILL", "       Black Bean Garden Burger, without the roll", "       Fries", "       Whole Fruit. (Vegan)", 
-			"JOW JING", "       Lo-Mein", "-Tofu", "       Ask the server for vegan or vegetarian sushi options. (Vegan)", 
-			"FRESH FUSIONS", "       The menu rotates daily and always provides a vegan and vegetarian option.", 
-			"CHICK-FIL-A", "       Garden Salad, without dressing", "       Fruit Cup", "       Waffle Fries (Vegan)", 
-			"AU BON PAIN", "       Oatmeal", "       Fruit Cups", "       Black Bean Soup", "       Chick Peas and Tomato Salad", "       Cucumber Salad (Vegan)", "       Check the daily soup for vegetarian or vegan options."};
-	*/
-	
+	//for ratings and review page
+	String review;
+	int rating;
+	int request_code;
 	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    		Thread splashTimer = new Thread(){
+    	
+    	
+		
+		Thread splashTimer = new Thread(){
 			
 			public void run() {
 				// TODO Auto-generated method stub
 				try {
 					//making this small reduced the time hello world was on the screen before the splash.
 					sleep(1);
-					startActivity(new Intent(MainActivity.this, Splash.class));
+					startActivity(new Intent(MainActivity.this, Splash.class)); 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -59,9 +65,11 @@ public class MainActivity extends ActionBarActivity {
 			}
 		
 		};
+				
 		splashTimer.start();
 		
 		
+		//for the extendedlistview 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
@@ -70,14 +78,85 @@ public class MainActivity extends ActionBarActivity {
         adapter = new RestaurantsAdapter(this, Restaurants_category, Foods_list);
         Exp_list.setAdapter(adapter);
         
-
+     // for the review and ratings (Second.java) activity
+        request_code = 1;
+        
+        Exp_list.setOnGroupCollapseListener(new OnGroupCollapseListener() {
+			
+			@Override
+			public void onGroupCollapse(int groupPosition) {
+				// TODO Auto-generated method stub
+				MediaPlayer buttonClickSound = MediaPlayer.create(MainActivity.this, R.raw.click);
+		        buttonClickSound.start();
+			}
+		});
+        
+        Exp_list.setOnGroupExpandListener(new OnGroupExpandListener() {
+			
+			@Override
+			public void onGroupExpand(int groupPosition) {
+				// TODO Auto-generated method stub
+				MediaPlayer buttonClickSound = MediaPlayer.create(MainActivity.this, R.raw.click);
+		        buttonClickSound.start();
+			}
+		});
+        Exp_list.setOnChildClickListener(new OnChildClickListener() {
+			
+			@Override
+			public boolean onChildClick(ExpandableListView parent, View v,
+					int groupPosition, int childPosition, long id) {
+				
+				// play a sound
+				MediaPlayer buttonClickSound = MediaPlayer.create(MainActivity.this, R.raw.click);
+		        buttonClickSound.start();
+		        
+		        //display popup 
+				Toast.makeText(getBaseContext(), 
+						Restaurants_category.get(Foods_list.get(groupPosition)).get(childPosition) + 
+						" from category " + Foods_list.get(groupPosition) + " is selected ", Toast.LENGTH_LONG).show();
+			    
+				Intent i = new Intent("umbc.veggie.Second");
+				//can I PUT THINGS IN this intent that Second can access??
+				//i.putExtra("fooditem", Restaurants_category.get(Foods_list.get(groupPosition)).get(childPosition));
+				
+				
+				startActivityForResult(i, request_code);
+				
+				return false;
+			}
+		});
+    }      
+        
+        
+   public void onActivityResult(int requestcode, int resultcode, Intent data){
+    	 
+        if (request_code == requestcode){
+        	if (resultcode == RESULT_OK)
+        	{
+        		int rate = data.getIntExtra("rating", -1);
+        		String review = data.getStringExtra("review");
+        		String item = data.getStringExtra("selectedItem");
+        		
+        		//String message = "You rated: " + rate;
+        		
+        		String message = "You rated " + 
+        		item + 
+        		" : " + rate;
+				
+        		
+        		//Toast.makeText(getBaseContext(), data.getData().toString(), Toast.LENGTH_SHORT).show();
+        		Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+        	}
+        		
+        }
+        	
+      
 		
 		
-		
-		//lvName = (ListView) findViewById(R.id.lv_Name);
-		//lvName.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, name));
     }
+   
 
+    	
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

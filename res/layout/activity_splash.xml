@@ -1,60 +1,51 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="umbc.veggie.Splash" >
 
-    <EditText
-        android:inputType="text"
-        android:id="@+id/editText1"
-        android:background="@android:color/transparent"
+    <TextView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-      
-        android:layout_marginTop="36dp"
+        android:background="@android:color/transparent"
         android:ems="10"
+        android:gravity="center"
         android:text="@string/chandni" />
 
-    <EditText
-        android:inputType="text"
-        android:id="@+id/editText2"
-        android:background="@android:color/transparent"
+    <TextView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-       
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/editText2"
+        android:background="@android:color/transparent"
         android:ems="10"
+        android:gravity="center"
         android:text="@string/brislin" />
-        
-    <EditText
-        android:inputType="text"
-        android:id="@+id/editText3"
-        android:background="@android:color/transparent"
+
+    <TextView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-     
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/editText2"
-        android:ems="10" 
+		android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="center"
         android:text="@string/course_number" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:contentDescription="@null"
         android:maxHeight="42dp"
         android:maxWidth="42dp"
         android:scaleType="fitCenter"
         android:src="@drawable/veggies" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,24 +1,57 @@
- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp" >
-    
-
-<ExpandableListView
-    android:id="@+id/exp_list"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-    android:divider="#A4C739"
-    android:dividerHeight="0.5dp"
-     >
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp" >
+    
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Click a menu item to rate or review it"
+        >
+        
+    </TextView>
+    
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Commons"
+        >
+        
+    </TextView>
 
-   
+    <ExpandableListView
+        android:id="@+id/exp_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#A4C739"
+        android:dividerHeight="0.5dp"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" >
+    </ExpandableListView>
+    
+    <TextView
+        
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Off-Campus"
+        >
+        
+    </TextView>
 
-</ExpandableListView>
-
-</RelativeLayout>
+</LinearLayout>

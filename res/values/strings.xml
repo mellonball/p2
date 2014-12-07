@@ -8,5 +8,7 @@
 	<string name="brislin">Brislin Thomas</string>
 	<string name="chandni">Chandni Patel</string>
 	<string name="course_number">CMSC 331</string>
+	<string name="tvHttp">go to strings to see this</string>
+	<string name="submit">SUBMIT</string>
 	
 </resources>

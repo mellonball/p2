@@ -8,6 +8,7 @@ public class DataProvider {
 
 	public static HashMap<String, List<String>> getInfo()
 	{
+		
 		HashMap<String, List<String>> Restaurants_Details = new HashMap<String, List<String>>();
 		List<String> Mondo_foods = new ArrayList<String>();
 		Mondo_foods.add("Vegetable Wrap with Hummus");
