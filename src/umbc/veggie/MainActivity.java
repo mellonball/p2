@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -29,20 +30,17 @@ import android.widget.ExpandableListView.OnGroupCollapseListener;
 
 public class MainActivity extends ActionBarActivity {
 	
-	
-	//for extended list view
-	HashMap<String, List<String>> Restaurants_category;
-	List<String> Foods_list;
 	ExpandableListView Exp_list;
-	
+	HashMap<String, List<String>> Restaurants_category;
+	List<String> restaurants_list;
+		
 	RestaurantsAdapter adapter;
-	
-	HttpExample a = new HttpExample();
-	
+		
 	//for ratings and review page
 	String review;
 	int rating;
 	int request_code;
+	String item = "default food item in Mainactivity";
 	
 
     @Override
@@ -53,9 +51,8 @@ public class MainActivity extends ActionBarActivity {
 		Thread splashTimer = new Thread(){
 			
 			public void run() {
-				// TODO Auto-generated method stub
 				try {
-					//making this small reduced the time hello world was on the screen before the splash.
+					//time before the splash.
 					sleep(1);
 					startActivity(new Intent(MainActivity.this, Splash.class)); 
 				} catch (InterruptedException e) {
@@ -69,23 +66,39 @@ public class MainActivity extends ActionBarActivity {
 		splashTimer.start();
 		
 		
-		//for the extendedlistview 
+		//for the expandablelistview 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
-        Restaurants_category = DataProvider.getInfo();
-        Foods_list = new ArrayList<String>(Restaurants_category.keySet());
-        adapter = new RestaurantsAdapter(this, Restaurants_category, Foods_list);
-        Exp_list.setAdapter(adapter);
         
-     // for the review and ratings (Second.java) activity
+       
+        Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
+        Context ctx = this;
+        Restaurants_category = new HashMap<String, List<String>>();
+        restaurants_list = new ArrayList<String>();
+        
+        GetRestaurantListDataTask aTask = new GetRestaurantListDataTask(Exp_list, ctx, Restaurants_category, restaurants_list);
+        aTask.execute();        
+        
+        
+        try {
+			
+        	adapter = new RestaurantsAdapter(ctx, Restaurants_category, restaurants_list);
+            Exp_list.setAdapter(adapter);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+        // for the review and ratings (Second.java) activity
         request_code = 1;
         
         Exp_list.setOnGroupCollapseListener(new OnGroupCollapseListener() {
 			
 			@Override
 			public void onGroupCollapse(int groupPosition) {
-				// TODO Auto-generated method stub
+				
 				MediaPlayer buttonClickSound = MediaPlayer.create(MainActivity.this, R.raw.click);
 		        buttonClickSound.start();
 			}
@@ -112,14 +125,14 @@ public class MainActivity extends ActionBarActivity {
 		        
 		        //display popup 
 				Toast.makeText(getBaseContext(), 
-						Restaurants_category.get(Foods_list.get(groupPosition)).get(childPosition) + 
-						" from category " + Foods_list.get(groupPosition) + " is selected ", Toast.LENGTH_LONG).show();
+						Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition) + 
+						" from category " + restaurants_list.get(groupPosition) + " is selected ", Toast.LENGTH_LONG).show();
 			    
 				Intent i = new Intent("umbc.veggie.Second");
-				//can I PUT THINGS IN this intent that Second can access??
-				//i.putExtra("fooditem", Restaurants_category.get(Foods_list.get(groupPosition)).get(childPosition));
 				
+				item = Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition);
 				
+				//waiting for rating and review of selected food item
 				startActivityForResult(i, request_code);
 				
 				return false;
@@ -133,9 +146,9 @@ public class MainActivity extends ActionBarActivity {
         if (request_code == requestcode){
         	if (resultcode == RESULT_OK)
         	{
-        		int rate = data.getIntExtra("rating", -1);
+        		float rate = data.getFloatExtra("rating", -1);
         		String review = data.getStringExtra("review");
-        		String item = data.getStringExtra("selectedItem");
+        		
         		
         		//String message = "You rated: " + rate;
         		
@@ -146,6 +159,7 @@ public class MainActivity extends ActionBarActivity {
         		
         		//Toast.makeText(getBaseContext(), data.getData().toString(), Toast.LENGTH_SHORT).show();
         		Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+        		
         	}
         		
         }

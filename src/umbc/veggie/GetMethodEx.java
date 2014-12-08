@@ -10,14 +10,22 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 public class GetMethodEx {
-
+	
+	String urlString = "default urlstring in GetMethodEx";
+	
+	public GetMethodEx(String url){
+		
+		urlString = url;
+	}
+	
+	
 	public String getInternetData() throws Exception{
 		BufferedReader in = null;
 		String data = null;
 		try{
 			
 			HttpClient client = new DefaultHttpClient();
-			URI website = new URI("http://userpages.umbc.edu/~cpatel4/CMSC331/331.php?Restaurant=3");
+			URI website = new URI(urlString);
 			HttpGet request = new HttpGet();
 			request.setURI(website);
 			
@@ -34,7 +42,7 @@ public class GetMethodEx {
 			
 			in.close();
 			data = sb.toString();
-			System.out.println("Data is " + data);
+			System.out.println("GetMethodEx Data is " + data);
 			
 			return data;
 			

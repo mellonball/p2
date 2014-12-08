@@ -9,13 +9,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 
 public class Second extends Activity{
 	
 	Button submit;
 	EditText review;
 	RatingBar rating;
-	
+	Bundle extras;
+	float rate;
 	
 	/**
 	 * all activities must implement this method 
@@ -28,8 +30,23 @@ public class Second extends Activity{
 		
 		submit = (Button) findViewById(R.id.bnsubmit);
 		review = (EditText) findViewById(R.id.etreview);
-		rating = (RatingBar) findViewById(R.id.rbrating);
-		rating.setStepSize((float) 1.0);
+		rating = (RatingBar) findViewById(R.id.rating);
+		//rating.setStepSize((float) 0.5);
+		
+		
+		rating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
+
+	        public void onRatingChanged(RatingBar ratingBar, float rating,  boolean fromUser) {
+
+	            rate = rating;
+
+	        }
+
+	    });
+
+	  
+		
+		
 		submit.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -37,24 +54,27 @@ public class Second extends Activity{
 				//get info from mainactivity
 				
 				
+				
 				// send data back to mainactivity
-				int rate = rating.getNumStars();
+				
 				String reviewString = review.getText().toString();
 				
 				Intent data = new Intent();
 				data.putExtra("rating", rate);
 				data.putExtra("review", reviewString);
+				String it = data.getStringExtra("fooditem");
+				System.out.println("FOOD ITEM in SECOND IS: " + it);
 				
-				//data.getExtras();	
-				//CAN YOU PASS INFO 2 WAYS IN AN INTENT? CAN I GET NAME OF CHILD CLICKED?
-				data.putExtra("selectedItem", data.getStringExtra("fooditem"));
 				
 				
 				//data.setData(Uri.parse(reviewString));  //for now his only passes the review
 				setResult(RESULT_OK, data);
 				finish();
 			}
+			
 		});
 	}
+	
+	
 
 }

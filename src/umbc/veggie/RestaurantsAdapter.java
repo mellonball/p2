@@ -15,36 +15,36 @@ public class RestaurantsAdapter extends BaseExpandableListAdapter {
 
 	private Context ctx;
 	private HashMap<String, List<String>> Restaurants_Category;
-	private List<String> Foods_List;
+	private List<String> Restaurants_List;
 	
-	public RestaurantsAdapter(Context ctx, HashMap<String, List<String>> Restaurants_Category, List<String> Foods_List)
+	public RestaurantsAdapter(Context ctx, HashMap<String, List<String>> Restaurants_Category, List<String> restaurants_list)
 	{
 		this.ctx = ctx;
 		this.Restaurants_Category = Restaurants_Category;
-		this.Foods_List = Foods_List;
+		this.Restaurants_List = restaurants_list;
 	}
 	@Override
 	public int getGroupCount() {
 
-		return Foods_List.size();
+		return Restaurants_List.size();
 	}
 
 	@Override
 	public int getChildrenCount(int arg0) {
 		
-		return Restaurants_Category.get(Foods_List.get(arg0)).size() ;
+		return Restaurants_Category.get(Restaurants_List.get(arg0)).size() ;
 	}
 
 	@Override
 	public Object getGroup(int arg0) {
 
-		return Foods_List.get(arg0);
+		return Restaurants_List.get(arg0);
 	}
 
 	@Override
 	public Object getChild(int parent, int child) {
 		//returns the current child as object
-		return Restaurants_Category.get(Foods_List.get(parent)).get(child);
+		return Restaurants_Category.get(Restaurants_List.get(parent)).get(child);
 	}
 
 	@Override
