@@ -10,6 +10,7 @@
     android:layout_height="wrap_content"
     android:text="Rstaurant name goes here"
     android:textStyle="bold"
+    android:textSize="20sp"
     android:textColor="#A4C739"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
@@ -21,8 +22,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textStyle="bold"
+    android:textSize="16sp"
     android:paddingTop="16dp"
-    android:paddingBottom="16dp"
+    android:paddingBottom="25dp"
     android:textColor="#A4C739"
     android:text="Foodnamegoeshere"
     android:layout_gravity="center"
@@ -32,7 +34,7 @@
         android:isIndicator="false"
         android:stepSize="0.5" 
         android:numStars="5" 
-        android:rating="0.0" 
+        android:rating="1.0" 
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content">
     </RatingBar>
@@ -53,5 +55,17 @@
     android:id="@+id/bnsubmit"
     android:text="@string/submit" >
 	</Button>
+
+	<TextView
+	    android:id="@+id/avgrating"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+ />
+
+	<ListView
+	    android:id="@+id/listreviews"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" >
+	</ListView>
 
 </LinearLayout>

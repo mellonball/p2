@@ -124,26 +124,34 @@ public class MainActivity extends ActionBarActivity {
 				// play a sound
 				MediaPlayer buttonClickSound = MediaPlayer.create(MainActivity.this, R.raw.click);
 		        buttonClickSound.start();
+		       
 		        
+		        /*
 		        //display popup Toast
 				Toast.makeText(getBaseContext(), 
 						Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition) + 
 						" from category " + restaurants_list.get(groupPosition) + " is selected ", Toast.LENGTH_LONG).show();
-				
+				*/
+		        
+		        
 				//open browser and visit pages that have rotating menus since we can't scrape them at this time
 				String[] test = Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition).split("null");
 				
-				if (test[0].equals("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Fresh%20Fusions"))
+				if (test[0].equals("All foods served at Fresh Fusions are vegan, and are served on a 7 day rotating menu that changes each semester. Click here to go to see what is on today's menu"))
 				{	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Fresh%20Fusions"));
 		        	startActivity(browserIntent);
 				}
-				else if (test[0].equals("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=True%20Grit%27s")) {
+				else if (test[0].equals("The menu at True Grit's rotates daily. Click here to see what is on today's menu")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=True%20Grit%27s"));
 		        	startActivity(browserIntent);
 				}
-				else if (test[0].equals("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Skylight%20Room")) {
+				else if (test[0].equals("The menu at Skylight rotates daily. Click here to see what is on today's menu")) {
 					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Skylight%20Room"));
 		        	startActivity(browserIntent);
+				}
+				else if (test[0].equals("Check the daily soup for vegetarian or vegan options") ||
+						test[0].equals("Ask the server for vegan or vegetarian sushi options")){
+					;
 				}
 				// for static menu options let people rate the food item below
 				else{
@@ -161,7 +169,7 @@ public class MainActivity extends ActionBarActivity {
 				startActivityForResult(i, request_code);
 				}
 				
-		        System.out.println("DEBUG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		        System.out.println("DEBUG in Main Activity!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		        System.out.println(Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition));
 		        
 				return false;

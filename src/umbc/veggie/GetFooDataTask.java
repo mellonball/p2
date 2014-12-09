@@ -8,6 +8,7 @@ import java.util.List;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 /**
  * 
@@ -34,6 +35,12 @@ public class GetFooDataTask extends AsyncTask<URL, Integer, String> {
 	}
 
 	
+
+	public GetFooDataTask(TextView httpStuff) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	@Override
 	protected String doInBackground(URL... params) {

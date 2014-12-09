@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Second extends Activity{
 	
@@ -62,20 +63,21 @@ public class Second extends Activity{
 			public void onClick(View v) {
 				//get info from mainactivity
 				
-				
-				
-				// send data back to mainactivity
-				
 				String reviewString = review.getText().toString();
 				
+			    if (reviewString.trim().length() == 0){
+			    	Toast.makeText(getBaseContext(), "You did not enter a review. Please enter both a review and rating.", Toast.LENGTH_SHORT).show();
+			    }
+			    else{
+			    				
 				Intent data = new Intent();
 				data.putExtra("rating", rate);
 				data.putExtra("review", reviewString);
 
 				setResult(RESULT_OK, data);
 				finish();
+			    }
 			}
-			
 		});
 	}
 	

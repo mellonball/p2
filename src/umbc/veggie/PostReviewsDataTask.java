@@ -22,6 +22,7 @@ public class PostReviewsDataTask extends AsyncTask<URL, Integer, String>{
 	String fooditem;
 	float rating;
 	String review;
+	boolean populate;
 	
 	HttpClient httpclient = new DefaultHttpClient();
 	
@@ -36,6 +37,7 @@ public class PostReviewsDataTask extends AsyncTask<URL, Integer, String>{
 		fooditem = item;
 		rating = rate;
 		review = rev;
+		populate = true;
 	}
 
 	@Override
