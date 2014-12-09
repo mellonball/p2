@@ -27,7 +27,7 @@ public class Splash extends Activity {
 				// TODO Auto-generated method stub
 				try {
 					//this controls how long the splash screen stays up
-					sleep(1000);
+					sleep(5000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

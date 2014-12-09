@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -38,9 +39,10 @@ public class MainActivity extends ActionBarActivity {
 		
 	//for ratings and review page
 	String review;
-	int rating;
+
 	int request_code;
 	String item = "default food item in Mainactivity";
+	String restaurant = "default rest in MainActivity";
 	
 
     @Override
@@ -123,18 +125,45 @@ public class MainActivity extends ActionBarActivity {
 				MediaPlayer buttonClickSound = MediaPlayer.create(MainActivity.this, R.raw.click);
 		        buttonClickSound.start();
 		        
-		        //display popup 
+		        //display popup Toast
 				Toast.makeText(getBaseContext(), 
 						Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition) + 
 						" from category " + restaurants_list.get(groupPosition) + " is selected ", Toast.LENGTH_LONG).show();
-			    
+				
+				//open browser and visit pages that have rotating menus since we can't scrape them at this time
+				String[] test = Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition).split("null");
+				
+				if (test[0].equals("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Fresh%20Fusions"))
+				{	Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Fresh%20Fusions"));
+		        	startActivity(browserIntent);
+				}
+				else if (test[0].equals("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=True%20Grit%27s")) {
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=True%20Grit%27s"));
+		        	startActivity(browserIntent);
+				}
+				else if (test[0].equals("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Skylight%20Room")) {
+					Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.dineoncampus.com/umbc/show.cfm?cmd=menus2&venueName=Skylight%20Room"));
+		        	startActivity(browserIntent);
+				}
+				// for static menu options let people rate the food item below
+				else{
+					
 				Intent i = new Intent("umbc.veggie.Second");
 				
+				
 				item = Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition);
+				restaurant = restaurants_list.get(groupPosition);
+				
+				i.putExtra("restaurant", restaurant);
+				i.putExtra("item", item);
 				
 				//waiting for rating and review of selected food item
 				startActivityForResult(i, request_code);
+				}
 				
+		        System.out.println("DEBUG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		        System.out.println(Restaurants_category.get(restaurants_list.get(groupPosition)).get(childPosition));
+		        
 				return false;
 			}
 		});
@@ -149,17 +178,17 @@ public class MainActivity extends ActionBarActivity {
         		float rate = data.getFloatExtra("rating", -1);
         		String review = data.getStringExtra("review");
         		
-        		
-        		//String message = "You rated: " + rate;
-        		
         		String message = "You rated " + 
         		item + 
         		" : " + rate;
-				
         		
         		//Toast.makeText(getBaseContext(), data.getData().toString(), Toast.LENGTH_SHORT).show();
         		Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
         		
+        		//make a post here with (text) restaurant name, (text) item, (float) rating, (text) review
+        		//will need to be an asynctask
+        		PostReviewsDataTask aTask = new PostReviewsDataTask(restaurant, item, rate, review);
+        		aTask.execute();
         	}
         		
         }

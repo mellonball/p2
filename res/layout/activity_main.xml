@@ -14,24 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:ems="10"
+        android:textColor="#A4C739"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+    	android:paddingBottom="16dp"
         android:gravity="center"
         android:text="Click a menu item to rate or review it"
         >
         
     </TextView>
     
-    <TextView
-        
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:gravity="center"
-        android:text="Commons"
-        >
-        
-    </TextView>
+   
 
     <ExpandableListView
         android:id="@+id/exp_list"
@@ -42,16 +35,6 @@
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" >
     </ExpandableListView>
     
-    <TextView
-        
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:gravity="center"
-        android:text="Off-Campus"
-        >
-        
-    </TextView>
+    
 
 </LinearLayout>

@@ -8,7 +8,7 @@ import java.util.List;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
+
 /**
  * 
  * This class will populate the expandableListView for the MainActivity

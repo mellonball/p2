@@ -16,6 +16,10 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:ems="10"
+        android:textColor="#A4C739"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+    	android:paddingBottom="16dp"
         android:gravity="center"
         android:text="@string/chandni" />
 
@@ -24,7 +28,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:ems="10"
+        android:textColor="#A4C739"
+        android:textStyle="bold"
+        android:paddingTop="16dp"
+    	android:paddingBottom="16dp"
         android:gravity="center"
         android:text="@string/brislin" />
 
@@ -34,7 +41,7 @@
         android:layout_height="wrap_content"
 		android:paddingTop="@dimen/activity_vertical_margin"
         android:background="@android:color/transparent"
-        android:ems="10"
+        android:textColor="#A4C739"
         android:gravity="center"
         android:text="@string/course_number" />
 

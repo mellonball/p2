@@ -5,14 +5,28 @@
     android:orientation="vertical" >
 
     <TextView
+    android:id="@+id/restaurant"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="WELCOME TO SECOND ACTIVITY"
+    android:text="Rstaurant name goes here"
+    android:textStyle="bold"
+    android:textColor="#A4C739"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
     android:layout_gravity="center"
-    >
-    </TextView> 
+    ></TextView> 
     
-    
+    <TextView
+        android:id="@+id/foodname"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:textColor="#A4C739"
+    android:text="Foodnamegoeshere"
+    android:layout_gravity="center"
+    ></TextView> 
 
     <RatingBar android:id="@+id/rating" 
         android:isIndicator="false"
@@ -27,7 +41,8 @@
 
 	<EditText
 	    android:inputType="text|textMultiLine"
-    android:layout_width="match_parent"
+    android:layout_width="300dip"
+    android:lines="3"
     android:layout_height="wrap_content"
     android:id="@+id/etreview" >
     </EditText>

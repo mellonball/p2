@@ -1,6 +1,5 @@
 package umbc.veggie;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,7 +11,7 @@ import android.widget.ExpandableListView;
 
 public class GetRestaurantListDataTask extends AsyncTask<URL, Integer, String>{
 
-	String getRestaurantsURL = "ENTER A WEBSITE HERE resturant name, url";
+	String getRestaurantsURL = "http://userpages.umbc.edu/~cpatel4/CMSC331/Project2.php";
 	String returned = "this is the default string in GetRestaurantListDataTask";
 	
 	Context ctx;

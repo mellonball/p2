@@ -2,7 +2,6 @@ package umbc.veggie;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
+import android.widget.TextView;
 
 public class Second extends Activity{
 	
@@ -18,6 +18,8 @@ public class Second extends Activity{
 	RatingBar rating;
 	Bundle extras;
 	float rate;
+	TextView restaurant;
+	TextView item;
 	
 	/**
 	 * all activities must implement this method 
@@ -28,10 +30,17 @@ public class Second extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.second_layout);
 		
+		Intent it = getIntent();
+		restaurant = (TextView) findViewById(R.id.restaurant);
+		restaurant.setText(it.getStringExtra("restaurant"));
+		item = (TextView) findViewById(R.id.foodname);
+		item.setText(it.getStringExtra("item"));
+		
+		
 		submit = (Button) findViewById(R.id.bnsubmit);
 		review = (EditText) findViewById(R.id.etreview);
 		rating = (RatingBar) findViewById(R.id.rating);
-		//rating.setStepSize((float) 0.5);
+		//rating.setStepSize((float) 0.5);  	can change this to 1.0 if don't want half star ratings
 		
 		
 		rating.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
@@ -62,12 +71,7 @@ public class Second extends Activity{
 				Intent data = new Intent();
 				data.putExtra("rating", rate);
 				data.putExtra("review", reviewString);
-				String it = data.getStringExtra("fooditem");
-				System.out.println("FOOD ITEM in SECOND IS: " + it);
-				
-				
-				
-				//data.setData(Uri.parse(reviewString));  //for now his only passes the review
+
 				setResult(RESULT_OK, data);
 				finish();
 			}
