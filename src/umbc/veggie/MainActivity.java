@@ -1,7 +1,5 @@
 package umbc.veggie;
 
-//import com.example.lupolisplash.Main;
-//import com.example.lupolisplash.Splash;
 
 
 import java.security.PublicKey;
@@ -29,11 +27,13 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity{
 	
 	ExpandableListView Exp_list;
 	HashMap<String, List<String>> Restaurants_category;
 	List<String> restaurants_list;
+	
+	Button seereviews;
 		
 	RestaurantsAdapter adapter;
 		
@@ -72,14 +72,18 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-       
+        //button for seeing the reviews	on main page ---- NOT USING ANYMORE
+        //seereviews = (Button) findViewById(R.id.bn_seereviews);
+        //seereviews.setOnClickListener(this);
+        
         Exp_list = (ExpandableListView) findViewById(R.id.exp_list);
+      
         Context ctx = this;
         Restaurants_category = new HashMap<String, List<String>>();
         restaurants_list = new ArrayList<String>();
         
         GetRestaurantListDataTask aTask = new GetRestaurantListDataTask(Exp_list, ctx, Restaurants_category, restaurants_list);
-        aTask.execute();        
+                
         
         
         try {
@@ -91,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
+        aTask.execute();
         
         // for the review and ratings (Second.java) activity
         request_code = 1;
@@ -222,11 +226,19 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings) 
+        {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
+/* NOT USING ANYMORE for to reviews button on main page
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		startActivity(new Intent("android.intent.action.DisplayReviews"));
+	}
+ */   
     
 }

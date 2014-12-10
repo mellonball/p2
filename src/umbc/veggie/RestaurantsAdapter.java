@@ -32,6 +32,9 @@ public class RestaurantsAdapter extends BaseExpandableListAdapter {
 	@Override
 	public int getChildrenCount(int arg0) {
 		
+		System.out.println("arg0="+arg0);
+		System.out.println("Restaurant_list.get(arg0)="+Restaurants_List.get(arg0));
+		System.out.println(Restaurants_Category.get(Restaurants_List.get(arg0)));
 		return Restaurants_Category.get(Restaurants_List.get(arg0)).size() ;
 	}
 

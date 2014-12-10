@@ -47,7 +47,7 @@ public class GetFooDataTask extends AsyncTask<URL, Integer, String> {
 		
 		for (int i=0; i<restaurants_urls.length; i=i+2){
 			
-			String rest = restaurants_urls[i];
+			String rest = restaurants_urls[i].trim();
 			String url = restaurants_urls[i+1];
 			
 			
@@ -67,10 +67,10 @@ public class GetFooDataTask extends AsyncTask<URL, Integer, String> {
 				//parse each returned into foodlist
 				List<String> Foods_list = new ArrayList<String>();
 				
-				String[] tokens = returned.split("null");
+				String[] tokens = returned.trim().split("null");
 				for (String s:tokens)
 				{
-					Foods_list.add(s);
+					Foods_list.add(s.trim());
 				}
 				
 				Restaurants_category.put(rest, Foods_list);

@@ -47,10 +47,10 @@ public class GetRestaurantListDataTask extends AsyncTask<URL, Integer, String>{
 	
 	protected void onPostExecute(String result){
 		//parse returned into restaurants_list
-		String[] r_list = result.split("null");
+		String[] r_list = result.trim().split("null");
 		
 		for (int i = 0; i<r_list.length; i=i+2){
-			restaurants_list.add(r_list[i]);
+			restaurants_list.add(r_list[i].trim());
 			System.out.println("getrestDL: "+r_list[i]);
 		}
 		
