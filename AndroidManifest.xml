@@ -19,26 +19,6 @@
         
         
         <activity
-            android:name=".HttpExample"
-            android:label="@string/title_activity_splash" >
-            <intent-filter>
-                <action android:name="android.intent.action.HttpExample" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
-            android:name=".DisplayReviews"
-            android:label="@string/title_activity_splash" >
-            <intent-filter>
-                <action android:name="android.intent.action.DisplayReviews" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        
-        <activity
             android:name=".Splash"
             android:label="@string/title_activity_splash" >
             <intent-filter>
